@@ -1,14 +1,94 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="de">
 
 <head>
-    <title>Our Funky HTML Page</title>
-    <meta name="description" content="Our first page">
-    <meta name="keywords" content="html tutorial template">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alina Mokrova - Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #f4f4f4;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #f4f4f4;
+            border-radius: 5px;
+            margin: 1rem;
+            padding: 1rem;
+            width: 300px;
+        }
+
+        .card img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+    </style>
 </head>
 
 <body>
-    Content goes here.
+    <header>
+        <h1>Alina Mokrova B.Sc.</h1>
+    </header>
+    <section>
+        <p>Ich habe einen Bachelor in Architektur und strebe derzeit einen Abschluss in Medieninformatik und Visual
+            Computing an. Durch meine Studien konnte ich bereits Kompetenzen in den Bereichen Design und Visualisierung
+            sammeln und verfüge über ausgezeichnete Kommunikations- und Kooperationsfähigkeiten. Ich suche eine
+            herausfordernde und wertvolle Aufgabe im Bereich UI/UX-Design, bei der ich meine Programmierfähigkeiten und
+            meine Leidenschaft für die Gestaltung intuitiver und benutzerfreundlicher Schnittstellen zum Einsatz bringen
+            kann.</p>
+        <h2>Kontakt</h2>
+        <p>Josef-Ponten-Str. 46, 52072-AC<br>
+            <a href="mailto:alinamokrova@gmail.com">alinamokrova@gmail.com</a><br>
+            015777051221
+        </p>
+    </section>
+    <section>
+        <h2>3D-Projekte</h2>
+        <div class="container">
+            <!-- Add more card elements for each project -->
+            <div class="card">
+                <img src="path/to/3d-project1.jpg" alt="3D Project 1">
+                <h3>3D Projekt 1</h3>
+                <p>Beschreibung des 3D Projekts 1</p>
+            </div>
+            <div class="card">
+                <img src="path/to/3d-project2.jpg" alt="3D Project 2">
+                <h3>3D Projekt 2</h3>
+                <p>Beschreibung des 3D Projekts 2</p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h2>Architekturprojekte</h2>
+        <div class="container">
+            <!-- Add more card elements for each project -->
+            <div class="card">
+                <img src="path/to/architecture-project1.jpg" alt="Architektur Projekt 1">
+                <h3>Architektur Projekt 1</h3>
+                <p>Beschreibung des Architektur Projekts 1</p>
+            </div>
+            <div class="card">
+                <img src="path/to/architecture-project2.jpg" alt="Architektur Projekt 2">
+                <h3>Architektur Projekt 2</h3>
+                <p>Beschreibung des Architektur Projekts 2</p>
+            </div>
+        </div>
+    </section>
 </body>
-
-</html>
