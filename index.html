@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
-
+    <script src="index.js"></script>
     <title>Alina Mokrova - Portfolio</title>
     <link rel="stylesheet" href="index.css">
 </head>
@@ -60,35 +60,11 @@
         </div>
 
     </section>
-    <!DOCTYPE html>
 
-    <canvas id="canvas"></canvas>
-    <script>
-        const canvas = document.querySelector('#canvas');
-        const renderer = new THREE.WebGLRenderer({ canvas });
+    <section>
+        <canvas id="canvas"></canvas>
 
-        const scene = new THREE.Scene();
-
-        const objLoader = new THREE.OBJLoader();
-        const mtlLoader = new THREE.MTLLoader();
-
-        // load the material file
-        mtlLoader.load('movingGeorge.mtl', function (materials) {
-            materials.preload();
-            // load the object file, passing in the materials
-            objLoader.setMaterials(materials);
-            objLoader.load('movingGeorge.obj', function (object) {
-                scene.add(object);
-            });
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-            // apply transformations to the object here
-            renderer.render(scene, camera);
-        }
-        animate();
-    </script>
+    </section>
 
 </html>
 
