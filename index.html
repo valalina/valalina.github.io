@@ -1,71 +1,23 @@
 <!DOCTYPE html>
-<html lang="de">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/OBJLoader.js"></script>
-    <script src="index.js"></script>
-    <title>Alina Mokrova - Portfolio</title>
-    <link rel="stylesheet" href="index.css">
+    <title>My 3D Model</title>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/three.min.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/LoaderSupport.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/OBJLoader2.js"></script>
+    <script src="https://threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/MTLLoader.js"></script>
+    <style>
+        #canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Alina Mokrova B.Sc.</h1>
-    </header>
-    <section>
-        <p>Ich habe einen Bachelor in Architektur und strebe derzeit einen Abschluss in Medieninformatik und Visual
-            Computing an. Durch meine Studien konnte ich bereits Kompetenzen in den Bereichen Design und Visualisierung
-            sammeln und verfüge über ausgezeichnete Kommunikations- und Kooperationsfähigkeiten. Ich suche eine
-            herausfordernde und wertvolle Aufgabe im Bereich UI/UX-Design, bei der ich meine Programmierfähigkeiten und
-            meine Leidenschaft für die Gestaltung intuitiver und benutzerfreundlicher Schnittstellen zum Einsatz bringen
-            kann.</p>
-        <h2>Kontakt</h2>
-        <p><a href="mailto:alinamokrova@gmail.com">alinamokrova@gmail.com</a><br>
-
-        </p>
-    </section>
-    <section>
-        <h2>3D-Projekte</h2>
-        <div class="container">
-            <!-- Add more card elements for each project -->
-            <div class="card">
-                <img src="path/to/3d-project1.jpg" alt="3D Project 1">
-                <h3>3D Projekt 1</h3>
-                <p>Beschreibung des 3D Projekts 1</p>
-            </div>
-            <div class="card">
-                <img src="path/to/3d-project2.jpg" alt="3D Project 2">
-                <h3>3D Projekt 2</h3>
-                <p>Beschreibung des 3D Projekts 2</p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h2>Architekturprojekte</h2>
-        <div class="container">
-            <!-- Add more card elements for each project -->
-            <div class="card">
-                <img src="path/to/architecture-project1.jpg" alt="Architektur Projekt 1">
-                <h3>Architektur Projekt 1</h3>
-                <p>Beschreibung des Architektur Projekts 1</p>
-            </div>
-            <div class="card">
-                <img src="path/to/architecture-project2.jpg" alt="Architektur Projekt 2">
-                <h3>Architektur Projekt 2</h3>
-                <p>Beschreibung des Architektur Projekts 2</p>
-            </div>
-        </div>
-
-    </section>
-
-    <section>
-        <canvas id="canvas"></canvas>
-
-    </section>
+    <canvas id="c"></canvas>
+</body>
 
 </html>
-
-</body>
