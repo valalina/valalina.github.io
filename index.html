@@ -3,9 +3,9 @@
 
 <head>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/FBXLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fflate@0.7.0/umd/fflate.min.js"></script>
+
     <style>
         body {
             margin: 0;
@@ -17,14 +17,14 @@
     </style>
 </head>
 
-
 <body>
     <canvas id="c"></canvas>
-    <script>
+    <script type="module">
         const canvas = document.querySelector('#c');
         const renderer = new THREE.WebGLRenderer({ canvas });
 
         const scene = new THREE.Scene();
+        const clock = new THREE.Clock();
 
         const camera = new THREE.PerspectiveCamera(
             75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000
@@ -37,10 +37,10 @@
         light.position.set(0, 0, 10);
         scene.add(light);
 
-        const loader = new THREE.ColladaLoader(); // Change this line
+        const loader = new THREE.GLTFLoader();
 
-        loader.load('movingGeorge.dae', function (collada) { // Change this line
-            const object = collada.scene;
+        loader.load('movingGeorge.gltf', function (gltf) {
+            const object = gltf.scene;
 
             // Center the object in the scene
             const bbox = new THREE.Box3().setFromObject(object);
@@ -48,8 +48,39 @@
             object.position.sub(center);
 
             scene.add(object);
+
+            // Play the first animation if available
+            if (gltf.animations.length > 0) {
+                const mixer = new THREE.AnimationMixer(object);
+                const action = mixer.clipAction(gltf.animations[0]);
+                action.play();
+
+                // Update the animation in the render loop
+                function render() {
+                    requestAnimationFrame(render);
+
+                    // Get the elapsed time since the last render
+                    const delta = clock.getDelta();
+
+                    // Update the mixer with the elapsed time
+                    mixer.update(delta);
+
+                    controls.update(); // Update the controls
+                    renderer.render(scene, camera);
+                }
+                render();
+            } else {
+                // If no animations are available, just render the scene
+                function render() {
+                    requestAnimationFrame(render);
+
+                    controls.update(); // Update the controls
+                    renderer.render(scene, camera);
+                }
+                render();
+            }
         }, undefined, function (error) {
-            console.error('An error occurred while loading the Collada model:', error);
+            console.error('An error occurred while loading the glTF model:', error);
         });
 
         function resizeRendererToDisplaySize(renderer) {
@@ -80,7 +111,4 @@
 
         window.addEventListener('resize', render);
     </script>
-</body>
-
-
-</html>
+</body
