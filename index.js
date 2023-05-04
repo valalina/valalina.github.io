@@ -1,103 +1,45 @@
-// Three.js - Load .OBJ and .MTL file
-// from https://threejsfundamentals.org/threejs/threejs-load-obj-materials.html
+const canvas = document.querySelector('#c');
+const renderer = new THREE.WebGLRenderer({ canvas });
 
+// Set the renderer size to match the canvas size
+renderer.setSize(canvas.clientWidth, canvas.clientHeight);
 
-'use strict';
+const scene = new THREE.Scene();
 
-/* global THREE */
+const camera = new THREE.PerspectiveCamera(
+    75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000
+);
+camera.position.z = 5;
 
-function main() {
-    const canvas = document.querySelector('#c');
-    const renderer = new THREE.WebGLRenderer({ canvas });
+const controls = new THREE.OrbitControls(camera, canvas);
 
-    const fov = 45;
-    const aspect = 2;  // the canvas default
-    const near = 0.1;
-    const far = 100;
-    const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-    camera.position.set(0, 10, 20);
+const light = new THREE.PointLight(0xffffff, 1, 100);
+light.position.set(0, 0, 10);
+scene.add(light);
 
-    const controls = new THREE.OrbitControls(camera, canvas);
-    controls.target.set(0, 5, 0);
-    controls.update();
+const objLoader = new THREE.OBJLoader();
+const mtlLoader = new THREE.MTLLoader();
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color('black');
+mtlLoader.load('movingGeorge.mtl', function (materials) {
+    materials.preload();
+    objLoader.setMaterials(materials);
 
-    {
-        const planeSize = 40;
+    objLoader.load('movingGeorge.obj', function (object) {
+        // center the object in the scene
+        const bbox = new THREE.Box3().setFromObject(object);
+        const center = bbox.getCenter(new THREE.Vector3());
+        object.position.sub(center);
 
-        const loader = new THREE.TextureLoader();
-        const texture = loader.load('https://threejsfundamentals.org/threejs/resources/images/checker.png');
-        texture.wrapS = THREE.RepeatWrapping;
-        texture.wrapT = THREE.RepeatWrapping;
-        texture.magFilter = THREE.NearestFilter;
-        const repeats = planeSize / 2;
-        texture.repeat.set(repeats, repeats);
+        // add the object to the scene
+        scene.add(object);
+    });
+});
 
-        const planeGeo = new THREE.PlaneBufferGeometry(planeSize, planeSize);
-        const planeMat = new THREE.MeshPhongMaterial({
-            map: texture,
-            side: THREE.DoubleSide,
-        });
-        const mesh = new THREE.Mesh(planeGeo, planeMat);
-        mesh.rotation.x = Math.PI * -.5;
-        scene.add(mesh);
-    }
-
-    {
-        const skyColor = 0xB1E1FF;  // light blue
-        const groundColor = 0xB97A20;  // brownish orange
-        const intensity = 1;
-        const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-        scene.add(light);
-    }
-
-    {
-        const color = 0xFFFFFF;
-        const intensity = 1;
-        const light = new THREE.DirectionalLight(color, intensity);
-        light.position.set(5, 10, 2);
-        scene.add(light);
-        scene.add(light.target);
-    }
-
-    {
-        const objLoader = new THREE.OBJLoader2();
-        objLoader.loadMtl('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.mtl', null, (materials) => {
-            objLoader.setMaterials(materials);
-            objLoader.load('https://threejsfundamentals.org/threejs/resources/models/windmill/windmill.obj', (event) => {
-                const root = event.detail.loaderRootNode;
-                scene.add(root);
-            });
-        });
-    }
-
-    function resizeRendererToDisplaySize(renderer) {
-        const canvas = renderer.domElement;
-        const width = canvas.clientWidth;
-        const height = canvas.clientHeight;
-        const needResize = canvas.width !== width || canvas.height !== height;
-        if (needResize) {
-            renderer.setSize(width, height, false);
-        }
-        return needResize;
-    }
-
-    function render() {
-
-        if (resizeRendererToDisplaySize(renderer)) {
-            const canvas = renderer.domElement;
-            camera.aspect = canvas.clientWidth / canvas.clientHeight;
-            camera.updateProjectionMatrix();
-        }
-
-        renderer.render(scene, camera);
-
-        requestAnimationFrame(render);
-    }
-
+function render() {
     requestAnimationFrame(render);
-}
 
-main();
+    controls.update(); // update the controls
+
+    renderer.render(scene, camera);
+}
+render();
