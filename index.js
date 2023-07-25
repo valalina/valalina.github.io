@@ -33,13 +33,13 @@ $(document).ready(function () {
 
         var isContactSection = $(this).hasClass('contact');
         if (isContactSection) {
-            $('#nav-slider').css('padding', '2rem');
+            $('#nav-slider').css('height', '1.3em');
             $("#contacts").fadeIn();
             document.querySelector('h3').innerText = 'Contact me!'; // Corrected line
 
         } else {
             $("#contacts").fadeOut();
-            $('#nav-slider').css('padding', '1rem');
+            $('#nav-slider').css('height', '0em');
             document.querySelector('h3').innerText = "Hi, I'm Alina";
         }
 
@@ -82,8 +82,8 @@ $(document).ready(function () {
     $('.circle').on('click', function (e) {
         // Close the previously opened circle
         $('.circle.active').removeClass('active').css({
-            width: '300px',
-            height: '300px',
+            width: '20em',
+            height: '20em',
 
         });
         $('.circle-content').show(); // Show circle content for all circles
@@ -94,16 +94,16 @@ $(document).ready(function () {
             // If the clicked circle is already active, close it and show circle content
             e.stopPropagation();
             $(this).removeClass('active').css({
-                width: '300px',
-                height: '300px'
+                width: '20em',
+                height: '20em'
             });
             $(this).find('.oval-content').hide();
             $(this).find('.circle-content').show();
         } else {
             // If the clicked circle is not active, open it and show oval content
             $(this).addClass('active').css({
-                width: '300px',
-                height: '600px'
+                width: '20em',
+                height: '40em'
             });
             $(this).find('.circle-content').hide();
             $(this).find('.oval-content').show();
@@ -160,8 +160,8 @@ $(document).ready(function () {
     $('.close-button').on('click', function (e) {
         e.stopPropagation();
         $(this).closest('.circle').removeClass('active').css({
-            width: '300px',
-            height: '300px'
+            width: '20em',
+            height: '20em'
         });
         $(this).closest('.circle').find('.oval-content').hide();
         $(this).closest('.circle').find('.circle-content').show();

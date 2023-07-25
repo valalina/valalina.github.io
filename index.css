@@ -57,19 +57,19 @@ nav {
     display: flex;
     position: relative;
     justify-content: flex-end;
-    padding: 3em;
+    padding: 2em;
+    font-size: 1em;
 }
 
 #nav-slider {
     position: absolute;
-    top: calc(100% - 4.5rem);
+    top: calc(100% - 3.5em);
     z-index: 1;
-
-    padding: 1rem;
+    padding: 1em;
     cursor: pointer;
     background: rgba(251, 220, 153, 0.6);
-    border: rgba(251, 220, 153, 0.6) 1px solid;
-    border-radius: 40px;
+    border: rgba(251, 220, 153, 0.6) .1em solid;
+    border-radius: 5em;
 
     transition: all 200ms ease;
 }
@@ -82,10 +82,11 @@ nav {
 .contacts {
     /* Hide the contacts by default */
     position: absolute;
-    top: 52%;
+    top: 48%;
+    left: 65%;
     z-index: 2;
     /* Set the desired background colorfo */
-    padding: 1rem;
+    padding: 1em;
 
 }
 
@@ -98,7 +99,7 @@ nav {
 .links a {
     cursor: pointer;
 
-    margin: 0px 20px;
+    margin: 0em 0.8em;
     text-decoration: none;
     color: #bd5151;
     font-style: oblique;
@@ -110,8 +111,9 @@ nav {
 }
 
 .contact-icon {
+    font-size: 1.2em;
     color: #557DA3;
-    margin: 0px 3px;
+    margin: 0em .1em;
 }
 
 
@@ -127,16 +129,14 @@ nav {
 }
 
 h3 {
-    font-size: 50px;
-
-
+    font-size: 3rem;
 }
 
 .alina {
     position: relative;
-    margin: 30px;
-    width: 400px;
-    height: 400px;
+    margin: 3em;
+    width: 28em;
+    height: 28em;
     overflow: hidden;
 
 }
@@ -161,14 +161,15 @@ h3 {
     text-align: center;
     color: #557DA3;
     font-style: oblique;
+    font-size: 1.1em;
     margin: 2em 2em;
 }
 
 .circle {
     position: relative;
-    margin: 20px;
-    width: 300px;
-    height: 300px;
+    margin: 2em;
+    width: 20em;
+    height: 20em;
     background: rgba(223, 141, 141, 0.7);
     border-radius: 100em;
     overflow: hidden;
@@ -212,8 +213,7 @@ h3 {
 
 .circle .overlay h3 {
     font-size: 1.5rem;
-    margin-bottom: 10px;
-
+    margin-bottom: .5em;
 }
 
 
@@ -221,9 +221,9 @@ h3 {
 
 .circle.active {
     border-radius: 100em;
-    height: 600px;
+    height: 40em;
     /* double the initial height */
-    width: 300px;
+    width: 20em;
     /* double the initial width */
     grid-row: span 2;
 }
@@ -250,9 +250,9 @@ h3 {
 .oval-content button {
     position: absolute;
     bottom: 2em;
-    padding: 7px;
+    padding: 1em 1em;
     justify-self: flex-end;
-    border-radius: 30px;
+    border-radius: 3em;
     border: none;
     background-color: rgb(213, 121, 121);
     color: rgb(251, 220, 153);
@@ -272,7 +272,7 @@ h3 {
 
 .oval-content .carousel-container {
     width: 100%;
-    height: 300px;
+    height: 20em;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
@@ -290,7 +290,7 @@ h3 {
 
 .oval-container .image-container {
     width: 100%;
-    height: 200px;
+    height: 20em;
     /* Set this to whatever fixed height you want */
     overflow: hidden;
 }
@@ -309,13 +309,13 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 0;
+    padding: .2em 0;
 }
 
 .oval-content .dot {
-    height: 15px;
-    width: 15px;
-    margin: 0 2px;
+    height: 1em;
+    width: 1em;
+    margin: 0 .2em;
     background-color: rgb(223, 141, 141);
     border-radius: 50%;
     display: inline-block;
@@ -339,58 +339,86 @@ h3 {
 
 .circle-container {
     position: relative;
-    width: 300px;
-    height: 300px;
+    width: 20em;
+    height: 20em;
 }
 
-/* The Modal */
+/* -- -- -- -- -- -- -- MODAL -- -- -- -- -- -- -- */
+
 .modal {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 9999;
     top: 0;
     left: 0;
-
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background: rgba(251, 220, 153, 0.6);
+    background: rgba(251, 220, 153, 0.8);
 
     /* Center the modal content vertically and horizontally */
     display: flex;
     align-items: center;
     justify-content: center;
+
+
 }
 
 /* Modal Content */
 .modal-content {
-    position: relative;
-    margin: 5% auto;
-    /* 15% from the top and centered */
-    width: 50%;
-    max-width: fit-content;
-    /* Could be more or less, depending on screen size */
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .modal-content img {
-    width: 100%;
-    height: 100%;
+    width: 50%;
+    margin: 2em 2em;
     object-fit: contain;
-    background: rgba(223, 141, 141, 0.8);
 }
 
 /* Close Button */
 .modal-close-button {
-    color: #557DA3;
-    font-size: 28px;
-    font-weight: bold;
-
     position: absolute;
-    top: 1em;
-    right: 1em;
+    transform: translate(30vw, 100%);
+
     cursor: pointer;
+    color: #557DA3;
+    font-size: 1.2em;
+    font-weight: bold;
+    background: rgb(223, 141, 141);
+    border: .4em solid rgb(223, 141, 141);
+    border-radius: 40%;
 }
 
 .modal-close-button:hover {
-    transform: scale(1.2);
+    background-color: #bd5151;
+    border-color: #bd5151;
+}
+
+
+/* -- -- -- -- -- -- -- @media -- -- -- -- -- -- -- */
+
+@media (max-width: 767px) {
+
+    .top-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .circle {
+        width: 20em;
+        margin: 10px 0;
+    }
+
+    .modal-content img {
+        width: 90%;
+        margin-top: 30%;
+    }
+
 }
