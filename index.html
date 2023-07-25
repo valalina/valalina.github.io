@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand|Raleway&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ysabeau+Infant&display=swap">
+    <script src="https://kit.fontawesome.com/965de00649.js" crossorigin="anonymous"></script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
@@ -15,21 +17,27 @@
 </head>
 
 <body>
-    <nav>
+    <div class="top-bar">
+        <nav>
+            <!-- <div class="title"><img src="blob_pres.png" alt="blob"></div>-->
+            <div class="links">
+                <a class="nav-link" data-section="welcome-section"><span class="link-text">About</span></a>
+                <a class="nav-link" data-section="uni-section"><span class="link-text">Uni</span></a>
+                <a class="nav-link" data-section="fun-section"><span class="link-text">Fun</span></a>
+                <a class="nav-link contact" data-section="welcome-section"><span class="link-text">Contact</span></a>
+                <div id="nav-slider"></div> <!-- New element for sliding background -->
+            </div>
 
+            <div id="contacts" class="contacts">
+                <a class="contact-icon" id="linkedin-icon" href="https://www.linkedin.com/in/alina-mokrova-a54136a8/"
+                    target="_blank">
+                    <i class="fab fa-linkedin fa-lg"></i></a>
+                <a class="contact-icon" id="github-icon" href="https://github.com/valalina" target="_blank"><i
+                        class="fab fa-github fa-lg"></i></a>
+            </div>
 
-        <!-- <div class="title"><img src="blob_pres.png" alt="blob"></div>-->
-        <div class="links">
-
-            <a class="nav-link" data-section="welcome-section"><span class="link-text">About</span></a>
-            <a class="nav-link" data-section="uni-section"><span class="link-text">Uni</span></a>
-            <a class="nav-link" data-section="fun-section"><span class="link-text">Fun</span></a>
-            <a class="nav-link" data-section="contact-section"><span class="link-text">Contact</span></a>
-            <div id="nav-slider"></div> <!-- New element for sliding background -->
-        </div>
-
-
-    </nav>
+        </nav>
+    </div>
     <!--
     <div id="contact-panel">
         <ul>
@@ -39,6 +47,15 @@
         </ul>
     </div>
 -->
+    <div id="imageModal" class="modal">
+
+        <div class="modal-content">
+            <img src="" alt="Zoomed Image" class="zoomed-image">
+            <span class="modal-close-button">&times;</span>
+        </div>
+
+    </div>
+
     <section id="welcome-section">
 
         <div id="welcome-text">
@@ -63,99 +80,265 @@
     </section>
 
 
-    <!--                onclick="openPopupWindow('Croco Desert', 'here', ['Croco_pres.png'])"> -->
-
     <section id="uni-section">
         <div class="descr">
-            <h4>projects in informatics</h4>
+            projects in informatics
         </div>
 
         <div class="container">
-            <div class="image" data-title="CrocoDesert" data-description="Android Game"
-                data-images='["Tipbiker_pres.jpg"]'>
-                <img src="main_icons/icon_croco.png" alt="CrocoDes">
 
-                <div class="overlay">
-                    <h4>Croco Desert</h4>
-                    <p>Android Mobile Game <br> Java / Android Studio</p>
+            <div class="circle" data-animation="fadeInUp">
+                <div class="circle-content">
+                    <img src="main_icons/icon_croco.png" alt="CrocoDes">
+                    <div class="overlay">
+                        <h4>Android Mobile Game</h4>
+                        <p>Croco Desert <br> Java / Android Studio</p>
+                    </div>
                 </div>
 
-                <div class="image-content">
-                    <div class="gallery">
-                        <button id="prevButton">Prev</button>
-                        <img id="galleryImage" src="Croco_pres.png" alt="Croco Des">
-                        <button id="nextButton">Next</button>
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/icon_croco.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/croco_2.png" alt="Image 2" class="slide">
+                            <img src="main_icons/croco_3.png" alt="Image 3" class="slide">
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                        </div>
                     </div>
-                    <p class="description">Description</p>
-                    <h2 class="title">Title</h2>
+
+                    <h4 class="title">"CrocoDesert"</h4>
+                    <p class="description">players swipe the crocodiles,
+                        which grab onto the food items in a slingshot-like motion.
+                        Through multithreading the waterfall items work independently.
+                        The Gameloop and Canvas provide a smooth gaming experience.
+                        Levels, Lives and High Scores are saved within Room Persistance Library.
+                    </p>
                     <button class="close-button">X</button>
                 </div>
-
-                <div class="hidden-images">
-                    <!-- <img src="main_icons/icon_croco.png" alt="Hidden Image 1">-->
-                </div>
-
             </div>
 
-            <div class="image"
-                onclick="openPopupWindow('TipBiker', 'PC Game OpenGL / C++ / TypeScript', ['Tipbiker_pres.jpg'] )">
-                <img src="main_icons/icon_tipbiker2.png" alt="TipBiker">
-                <div class="overlay">
-                    <h4>Computer Graphics</h4>
-                    <p>PC Game <br> OpenGL / C++ / Blender</p>
+            <div class="circle" data-animation="fadeInUp">
+                <div class="circle-content">
+                    <img src="main_icons/icon_tipbiker2.png" alt="TipBiker">
+                    <div class="overlay">
+                        <h4>Computer Graphics</h4>
+                        <p>PC Game <br> OpenGL / C++ / Blender</p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/icon_tipbiker2.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/tipbiker_3.png" alt="Image 3" class="slide">
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                        </div>
+                    </div>
+
+                    <h4 class="title">"TipBiker"</h4>
+                    <p class="description"> players have to guide George, a delivery biker
+                        to a randomly selected target city block within 30 seconds.
+                        George and the city blocks are designed in Blender.
+                        The game offers PhysX library collision detection,
+                        advanced graphics and realistic lighting.
+                        A skybox gives the illusion of a immersive world.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
-            <div class="image" data-animation="fadeInUp"
-                onclick="openPopupWindow('Information Visualization', 'web 3D presentation via three.js / (WebGL) / d3.js', ['InfoVis_pres.png'])">
-                <img src="main_icons/icon_infoVis.png" alt="InfoVis">
-                <div class="overlay">
-                    <h4>Information Visualization</h4>
-                    <p>web 3D presentation via <br> three.js / (WebGL) / d3.js</p>
+            <div class="circle" data-animation="fadeInUp">
+                <div class="circle-content">
+                    <img src="main_icons/icon_infoVis.png" alt="InfoVis">
+                    <div class="overlay">
+                        <h4>Information Visualization</h4>
+                        <p>web 3D presentation via <br> WebGL / three.js / d3.js</p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/icon_infoVis.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/infoVis_2.png" alt="Image 2" class="slide">
+
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+
+                        </div>
+                    </div>
+
+                    <h4 class="title">Data Visualization</h4>
+                    <p class="description"> Direct Volume Rendering on the GPU, raycasting and visualization of the
+                        volumetric data give the user a visual representation.
+                        A Density Histogram helps selecting iso-values for First-Hit Compositing
+                        and an interactive editor enables users to change the surface colors of the volumes.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
-            <div class="image"
-                onclick="openPopupWindow('Pattern Recognition', 'Automatic Reconstruction of torn pieces of paper in Matlab', ['Reconstruction.png'])">
-                <img src="main_icons/icon_reconstruction.png" alt="Reconstruction">
-                <div class="overlay">
-                    <h4>Pattern Recognition</h4>
-                    <p>Automatic Reconstruction of<br> torn pieces of paper in Matlab<br></p>
+            <div class="circle">
+
+                <div class="circle-content">
+                    <img src="main_icons/icon_reconstruction.png" alt="Reconstruction">
+                    <div class="overlay">
+                        <h4>Pattern Recognition</h4>
+                        <p>Automatic Reconstruction of<br> torn pieces of paper in Matlab<br></p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/icon_reconstruction.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/recon_2.png" alt="Image 2" class="slide">
+                            <img src="main_icons/recon_3.png" alt="Image 3" class="slide">
+                            <!-- Add as many images as you want -->
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <!-- Add as many dots as images -->
+                        </div>
+                    </div>
+
+                    <h4 class="title">A4 Reconstruction</h4>
+                    <p class="description"> a MATLAB project to reconstruct scanned torn pieces of an A4
+                        paper. Using image processing techniques like connected component labeling, Hough
+                        transformation, distance transformation, and matching algorithms, this tool seamlessly pieces
+                        together torn fragments.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
         </div>
 
         <div class="descr">
-            <h4>projects in architecture</h4>
+            projects in architecture
         </div>
 
         <div class="container">
 
-            <div class="image"
-                onclick="openPopupWindow('public space complex', 'Bibliothek in Wien, Floridsdorf 1210', ['GBL_pres.jpg'])">
-                <img src="GBL_pres.jpg" alt="GBL">
-                <div class="overlay">
-                    <h4>public space complex</h4>
-                    <p>Bibliothek in Wien <br> Floridsdorf 1210</p>
+            <div class="circle">
+                <div class="circle-content">
+                    <img src="main_icons/GBL_pres.png" alt="GBL">
+                    <div class="overlay">
+                        <h4>public space complex</h4>
+                        <p>library in Vienna<br> Floridsdorf 1210</p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/GBL_pres.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/GBL_2.jpg" alt="Image 2" class="slide">
+                            <img src="main_icons/GBL_concept.jpg" alt="Image 3" class="slide">
+                            <!-- Add as many images as you want -->
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <!-- Add as many dots as images -->
+                        </div>
+                    </div>
+
+                    <h4 class="title">Library complex</h4>
+                    <p class="description">
+                        Two interconnected building blocks come together through a gallery passage, showcasing a
+                        seamless blend of form and function. Bathed in natural light, the interior exudes an inviting
+                        and vibrant atmosphere, inviting everyone to indulge in the beauty of this remarkable space.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
-            <div class="image"
-                onclick="openPopupWindow('the &quot;Terrassenhaus&quot;', '100x100m Anlage mit Terrassenhaus', ['HB_pres.jpg'])">
-                <img src="HB_pres.jpg" alt="BA">
-                <div class="overlay">
-                    <h4>the &quot;Terrassenhaus" </h4>
-                    <p>100x100m Anlage mit Terrassenhaus </p>
+            <div class="circle">
+                <div class="circle-content">
+                    <img src="main_icons/HB_pres.png" alt="BA">
+                    <div class="overlay">
+                        <h4>the &quot;Terrassenhaus" </h4>
+                        <p>100x100m building site experiment</p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/HB_pres.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/HB_2.png" alt="Image 2" class="slide">
+
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+
+                        </div>
+                    </div>
+
+                    <h4 class="title">100x100m building experiment</h4>
+                    <p class="description"> Our visionary architectural project inspired by the iconic Alt Erlaa
+                        by Harry Glück.
+                        We created a dynamic building form complimenting the rectilinear apartments with
+                        carefully placed loggias and balconies.
+                        A new era of urban living in the heart of a dynamic and forward-thinking community.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
-            <div class="image"
-                onclick="openPopupWindow('workshop space', 'Maker-Space in Ahmedabad, Indien', ['AHM_pres.jpg', 'AHM_concept.jpg'] )">
-                <img src="AHM_pres.jpg" alt="AHM">
-                <div class="overlay">
-                    <h4>workshop space</h4>
-                    <p>Maker-Space in <br> Ahmedabad, Indien</p>
+            <div class="circle">
+                <div class="circle-content">
+                    <img src="main_icons/AHM_pres.png" alt="AHM">
+                    <div class="overlay">
+                        <h4>workshop space</h4>
+                        <p>Maker-Space in <br> Ahmedabad, Indien</p>
+                    </div>
+                </div>
+                <div class="oval-content">
+                    <div class="carousel-container">
+                        <div class="carousel-slide">
+                            <img src="main_icons/AHM_pres.png" alt="Image 1" class="slide active">
+                            <img src="main_icons/AHM_concept.png" alt="Image 2" class="slide">
+                            <img src="main_icons/AHM_concept2.png" alt="Image 3" class="slide">
+                            <img src="main_icons/AHM_concept3.png" alt="Image 4" class="slide">
+                        </div>
+
+                        <div class="carousel-dots">
+                            <span class="dot active" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                            <span class="dot" onclick="currentSlide(4)"></span>
+                        </div>
+                    </div>
+
+                    <h4 class="title">Maker-space in Ahmedabad</h4>
+                    <p class="description">
+                        Consisting of two blocks, one for loud activities and the other for quiet work.
+                        The copper doors of the two blocks provide different possibilities for interaction,
+                        allowing to be fully closed or open to each other.
+                        This feature creates a versatile space, where space for collaboration and innovation emerges.
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
             </div>
 
@@ -163,7 +346,8 @@
 
     </section>
 
-    <!-- Popup Window -->
+
+    <!-- Popup Window
     <div id="popupWindow" class="popup-window">
         <div class="popup-content">
             <span class="close-button">&times;</span>
@@ -179,7 +363,7 @@
         </div>
 
 
-    </div>
+    </div> -->
 
     <canvas id="c"></canvas>
     </section>
@@ -188,12 +372,49 @@
     <section id="fun-section">
         <div class="container">
 
-            <div class="image" data-animation="fadeInUp"
-                onclick="openPopupWindow('Information Visualization', 'web 3D presentation via three.js / (WebGL) / d3.js', ['InfoVis_pres.png'])">
-                <img src="main_icons/icon_infoVis.png" alt="InfoVis">
-                <div class="overlay">
-                    <h4>Information Visualization</h4>
-                    <p>web 3D presentation via <br> three.js / (WebGL) / d3.js</p>
+            <div class="circle">
+
+                <div class="circle-content">
+
+                    <img src="main_icons/icon_sunspotter.png" alt="Sunspotter">
+                    <div class="overlay">
+                        <h4>Sunspotter</h4>
+                        <p>web-app for Vienna cafés <br>that are currently in the sun <br>
+                            JS / Java / GoogleAPI <br> <br> <i>in progress</i>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="oval-content">
+                    <img src="main_icons/icon_sunspotter.png" alt="Sunspotter">
+                    <h4 class="title">Sunspotter</h4>
+                    <p class="description">web-app for Vienna cafés <br>that are currently in the sun <br>
+                        JS / Java / GoogleAPI <br> <br> <i>in progress</i>
+                    </p>
+                    <button class="close-button">X</button>
+                </div>
+
+            </div>
+
+            <div class="circle">
+                <div class="circle-content">
+                    <img src="main_icons/promt.png" alt="Promt">
+
+                    <div class="overlay">
+                        <h4>text-to-image storytelling</h4>
+                        <p>t2i story generation interface <br> JS / Python / StableDiffusion <br><br> <i>in progress</i>
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="oval-content">
+                    <img src="main_icons/promt.png" alt="Sunspotter">
+                    <h4 class="title">text-to-image storytelling</h4>
+                    <p class="description">t2i story generation interface <br> JS / Python / StableDiffusion <br><br>
+                        <i>in progress</i>
+                    </p>
+                    <button class="close-button">X</button>
                 </div>
 
             </div>

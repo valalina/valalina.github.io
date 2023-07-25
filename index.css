@@ -1,11 +1,396 @@
-html,
+/*  -- -- -- -- -- -- -- GENERAL STYLES  -- -- -- -- -- -- -- */
 body {
     margin: 0;
+    padding: 0;
     height: 100%;
+    font-family: "Quicksand", sans-serif;
+
+
+    background: linear-gradient(to bottom,
+            hsla(36, 31%, 90%, 0) 0%,
+            hsla(36, 31%, 90%, .013) 9.7%,
+            hsla(36, 31%, 90%, .049) 18.1%,
+            hsla(36, 31%, 90%, .104) 25.5%,
+            hsla(36, 31%, 90%, .175) 31.9%,
+            hsla(36, 31%, 90%, .259) 37.7%,
+            hsla(36, 31%, 90%, .352) 43%,
+            hsla(36, 31%, 90%, .45) 47.9%,
+            hsla(36, 31%, 90%, .55) 52.8%,
+            hsla(36, 31%, 90%, .648) 57.7%,
+            hsla(36, 31%, 90%, .741) 63%,
+            hsla(36, 31%, 90%, .825) 68.7%,
+            hsla(36, 31%, 90%, .896) 75%,
+            hsla(36, 31%, 90%, .951) 82.2%,
+            hsla(36, 31%, 90%, .987) 90.5%,
+            hsl(36, 31%, 90%) 100%);
+
+    background: linear-gradient(0deg,
+            rgba(255, 174, 0, 0.6125043767507004) 0%,
+            rgba(222, 97, 97, 0.24555759803921573) 33%,
+            rgba(173, 127, 187, 0.2) 66%,
+            rgba(81, 150, 200, 0.3) 100%);
+
+
 }
 
-#c {
+#imageModal {
+    display: none;
+}
+
+section {
+
+    /* Other styles for section positioning, layout, etc. */
+    height: 100vh;
+    /* this makes the section as tall as the viewport */
+    overflow: auto;
+    /* this adds a scrollbar if the content exceeds the height */
+}
+
+/*  -- -- -- -- -- -- -- HEADER STYLES  -- -- -- -- -- -- -- */
+.top-bar {
+    display: flex;
+    justify-content: center;
+}
+
+
+nav {
+    display: flex;
+    position: relative;
+    justify-content: flex-end;
+    padding: 3em;
+}
+
+#nav-slider {
+    position: absolute;
+    top: calc(100% - 4.5rem);
+    z-index: 1;
+
+    padding: 1rem;
+    cursor: pointer;
+    background: rgba(251, 220, 153, 0.6);
+    border: rgba(251, 220, 153, 0.6) 1px solid;
+    border-radius: 40px;
+
+    transition: all 200ms ease;
+}
+
+.nav-link {
+    position: relative;
+    z-index: 2;
+}
+
+.contacts {
+    /* Hide the contacts by default */
+    position: absolute;
+    top: 52%;
+    z-index: 2;
+    /* Set the desired background colorfo */
+    padding: 1rem;
+
+}
+
+.links,
+.contacts {
+    display: block;
+    /* Show the contacts on hover */
+}
+
+.links a {
+    cursor: pointer;
+
+    margin: 0px 20px;
+    text-decoration: none;
+    color: #bd5151;
+    font-style: oblique;
+}
+
+.links a:hover {
+    color: #557DA3;
+    /*color: #ffbd51;*/
+}
+
+.contact-icon {
+    color: #557DA3;
+    margin: 0px 3px;
+}
+
+
+
+/*  -- -- -- -- -- -- --  ABOUT SECTION STYLES  -- -- -- -- -- -- --  */
+#welcome-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-style: oblique;
+    color: #bd5151;
+}
+
+h3 {
+    font-size: 50px;
+
+
+}
+
+.alina {
+    position: relative;
+    margin: 30px;
+    width: 400px;
+    height: 400px;
+    overflow: hidden;
+
+}
+
+.alina img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: filter 0.3s ease-in-out;
+}
+
+
+/* -- -- -- -- -- -- -- CIRCLE STYLES  -- -- -- -- -- -- -- */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.descr {
+    text-align: center;
+    color: #557DA3;
+    font-style: oblique;
+    margin: 2em 2em;
+}
+
+.circle {
+    position: relative;
+    margin: 20px;
+    width: 300px;
+    height: 300px;
+    background: rgba(223, 141, 141, 0.7);
+    border-radius: 100em;
+    overflow: hidden;
+    transition: width 0.8s ease, height 0.8s ease;
+}
+
+
+.circle:hover .overlay {
+    opacity: 1;
+}
+
+
+.circle-content img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 100%;
+    max-height: 100%;
+    transition: filter 0.3s ease-in-out;
+}
+
+.circle .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(251, 220, 153, 0.95);
+    color: #41607d;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.3s ease-in-out;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.circle .overlay h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+
+}
+
+
+/* -- -- -- -- -- -- -- ACTIVE CIRCLES STYLES  -- -- -- -- -- -- -- */
+
+.circle.active {
+    border-radius: 100em;
+    height: 600px;
+    /* double the initial height */
+    width: 300px;
+    /* double the initial width */
+    grid-row: span 2;
+}
+
+.oval-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-style: oblique;
+    color: #557DA3;
+}
+
+.oval-content img {
+
+    position: relative;
+    width: 80%;
+    max-width: 100%;
+    max-height: 100%;
+    transition: filter 0.3s ease-in-out;
+}
+
+.oval-content button {
+    position: absolute;
+    bottom: 2em;
+    padding: 7px;
+    justify-self: flex-end;
+    border-radius: 30px;
+    border: none;
+    background-color: rgb(213, 121, 121);
+    color: rgb(251, 220, 153);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.oval-content button:hover {
+    background: #bd5151;
+}
+
+.oval-content p {
+    margin: 0 2em;
+}
+
+/* -- -- -- -- -- -- -- CAROUSEL -- -- -- -- -- -- -- */
+
+.oval-content .carousel-container {
+    width: 100%;
+    height: 300px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.oval-content .carousel-slide {
+    display: flex;
+    width: 80%;
+    height: 80%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.oval-container .image-container {
+    width: 100%;
+    height: 200px;
+    /* Set this to whatever fixed height you want */
+    overflow: hidden;
+}
+
+.oval-content .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    display: none;
+    object-fit: contain;
+    /* Hides all slides by default */
+}
+
+.oval-content .carousel-dots {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.oval-content .dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: rgb(223, 141, 141);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.oval-content .dot.active {
+    background-color: #bd5151;
+    ;
+}
+
+.carousel-slide img {
+    display: none;
+    /* This hides all slides by default */
+}
+
+.carousel-slide img.active {
     display: block;
+    /* This shows the active slide */
+}
+
+.circle-container {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+/* The Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(251, 220, 153, 0.6);
+
+    /* Center the modal content vertically and horizontally */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    margin: 5% auto;
+    /* 15% from the top and centered */
+    width: 50%;
+    max-width: fit-content;
+    /* Could be more or less, depending on screen size */
+}
+
+.modal-content img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: rgba(223, 141, 141, 0.8);
+}
+
+/* Close Button */
+.modal-close-button {
+    color: #557DA3;
+    font-size: 28px;
+    font-weight: bold;
+
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+}
+
+.modal-close-button:hover {
+    transform: scale(1.2);
 }
