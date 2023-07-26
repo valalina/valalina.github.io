@@ -161,10 +161,12 @@ $(document).ready(function () {
                             $('.zoomed-image').attr('src', imageUrl);
                             $('#imageModal').css('display', 'block');
                         }
+                        $('body').css('overflow', 'hidden');
                     }
                     isSwipe = false;
                 }
             }
+
 
 
             function handleTouchMove(event) {
@@ -183,7 +185,10 @@ $(document).ready(function () {
 
             $('.modal-close-button').on('click', function () {
                 $('#imageModal').css('display', 'none');
+                $('body').css('overflow', 'auto');
             });
+
+
 
             showSlides(slideIndex);
         }
