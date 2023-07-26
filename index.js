@@ -105,15 +105,19 @@ $(document).ready(function () {
                 width: '20em',
                 height: '40em'
             });
+
             $(this).find('.circle-content').hide();
             $(this).find('.oval-content').show();
-
             //  -- -- -- -- -- -- -- -- -- -- -- -- -- -- CAROUSEL -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
             let slideIndex = 0;
             let carouselContainer = $(this).find('.carousel-container');
             let slides = carouselContainer.find('.slide');
             let dots = carouselContainer.find('.dot');
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+            let isSwipe = false;
 
             function showSlides(n) {
                 if (n >= slides.length) slideIndex = 0;
@@ -124,8 +128,6 @@ $(document).ready(function () {
 
                 slides.eq(slideIndex).addClass('active');
                 dots.eq(slideIndex).addClass('active');
-
-
             }
 
             function currentSlide(n) {
@@ -133,14 +135,45 @@ $(document).ready(function () {
                 showSlides(slideIndex);
             }
 
-            $('.carousel-slide img').on('click', function () {
-                let imageUrl = $(this).attr('src');
-                $('.zoomed-image').attr('src', imageUrl);
 
-                // Show the modal
-                $('#imageModal').css('display', 'block');
-            });
 
+            function swipeCarousel(event) {
+                if (event.type === 'touchstart') {
+                    const targetImage = $(event.target).closest('.carousel-slide');
+                    if (targetImage.length) {
+                        touchStartX = event.changedTouches[0].clientX;
+                    }
+                } else if (event.type === 'touchend') {
+                    touchEndX = event.changedTouches[0].clientX;
+                    if (isSwipe) {
+                        if (touchEndX < touchStartX) {
+                            // Swipe left
+                            slideIndex++;
+                        } else if (touchEndX > touchStartX) {
+                            // Swipe right
+                            slideIndex--;
+                        }
+                        showSlides(slideIndex);
+                    } else {
+                        // No swipe, open image in modal
+                        let imageUrl = $(event.target).closest('.carousel-slide').find('img').attr('src');
+                        if (imageUrl) {
+                            $('.zoomed-image').attr('src', imageUrl);
+                            $('#imageModal').css('display', 'block');
+                        }
+                    }
+                    isSwipe = false;
+                }
+            }
+
+
+            function handleTouchMove(event) {
+                isSwipe = true;
+            }
+
+            // Attach touch events to the carousel container
+            carouselContainer.on('touchstart touchend', swipeCarousel);
+            carouselContainer.on('touchmove', handleTouchMove);
 
             // Add event listener to dots
             dots.on('click', function (e) {
@@ -169,6 +202,19 @@ $(document).ready(function () {
 
 
 
+    // Function to show the overlay when circle is pressed
+    function showOverlay() {
+        const circle = document.querySelector('.circle');
+        const overlay = circle.querySelector('.overlay');
+        overlay.classList.add('active');
+    }
+
+    // Function to hide the overlay when circle is released
+    function hideOverlay() {
+        const circle = document.querySelector('.circle');
+        const overlay = circle.querySelector('.overlay');
+        overlay.classList.remove('active');
+    }
 });
 
 
@@ -256,3 +302,4 @@ function showNextImage() {
      displayImage(currentImageIndex);
  }
 }*/
+

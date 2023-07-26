@@ -30,7 +30,7 @@ body {
             rgba(173, 127, 187, 0.2) 66%,
             rgba(81, 150, 200, 0.3) 100%);
 
-
+    background-attachment: fixed
 }
 
 #imageModal {
@@ -382,12 +382,14 @@ h3 {
     transform: translate(30vw, 100%);
 
     cursor: pointer;
-    color: #557DA3;
-    font-size: 1.2em;
-    font-weight: bold;
+    color: rgb(251, 220, 153);
+    font-size: 1.4em;
+    width: 1.1em;
     background: rgb(223, 141, 141);
-    border: .4em solid rgb(223, 141, 141);
-    border-radius: 40%;
+    border: .3em solid rgb(223, 141, 141);
+    border-radius: 50%;
+
+    text-align: center;
 }
 
 .modal-close-button:hover {
@@ -421,4 +423,32 @@ h3 {
         margin-top: 30%;
     }
 
+    .overlay {
+        /* Your overlay styles */
+        opacity: 0;
+    }
+
+    .overlay.active {
+        /* Additional styles when overlay is active */
+        opacity: 1;
+    }
+
+    .carousel-container {
+        display: flex;
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+        scroll-snap-type: x mandatory;
+        /* Snap the slides to the container */
+        -webkit-overflow-scrolling: touch;
+        /* Enable smooth scrolling on iOS */
+    }
+
+    .carousel-slide {
+        scroll-snap-align: start;
+        /* Snap each slide to the start of the container */
+        flex-shrink: 0;
+        /* Prevent the slides from shrinking */
+        width: 100%;
+        /* Each slide takes the full width of the container */
+    }
 }
